@@ -3,6 +3,7 @@ package com.example.miles.dao;
 import com.example.miles.model.Person;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface PersonDao {
@@ -15,4 +16,8 @@ public interface PersonDao {
     }
 
     List<Person> selectAllPeople();
+
+    int deletePersonById(UUID uuid);
+
+    Optional<Person> selectPersonById(UUID uuid);
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 //In spring boot world controller is the resource, this is where our Restful http methods are made
 @RequestMapping("/api/v1/person")
@@ -28,6 +29,16 @@ public class PersonController {
     @GetMapping
     public List<Person> getAllPeople(){
         return personService.getPeople();
+    }
+
+    @GetMapping(path = "{id}")
+    public Person getPersonById(@PathVariable("id") UUID uuid){
+        return personService.getPersonById(uuid).orElse(null);
+    }
+
+    @DeleteMapping(path = "{id}")
+    public int deletePersonById(@PathVariable("id") UUID uuid){
+        return personService.deletePerson(uuid);
     }
 
 }
